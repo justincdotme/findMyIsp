@@ -1,6 +1,9 @@
 <?php namespace findMyIsp;
 
 use findMyIsp\controller\PageController;
+use findMyIsp\lib\Request;
+
+$request = new Request;
 
 /**
  * The homepage has 2 possible URIs: / and /index.php
@@ -10,7 +13,7 @@ $homePage = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '/in
 /**
  * GET the homepage
  */
-if($_SERVER['REQUEST_METHOD'] === 'GET')
+if($request->isGet())
 {
     if($homePage)
     {
@@ -21,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'GET')
 /**
  * Post to the homepage.
  */
-if($_SERVER['REQUEST_METHOD'] === 'POST')
+if($request->isPost())
 {
     if($homePage)
     {

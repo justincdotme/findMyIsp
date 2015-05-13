@@ -57,6 +57,16 @@ class Request {
      */
     public function isPost()
     {
-        return $_SERVER['REQUEST_METHOD'] == 'POST' ? true : false;
+        return $_SERVER['REQUEST_METHOD'] === 'POST' ? true : false;
+    }
+
+    /**
+     * Check if the request was submitted via GET.
+     *
+     * @return bool
+     */
+    public function isGet()
+    {
+        return $_SERVER['REQUEST_METHOD'] === 'GET' ? true : false;
     }
 }
