@@ -1,0 +1,21 @@
+{
+    "name": "justincdotme/findmyisp",
+    "description": "ISP detection tool",
+    "require": {
+
+    },
+    "require-dev": {
+        "raveren/kint": "0.9.*"
+    },
+    "authors": [
+        {
+            "name": "Justin Christenson",
+            "email": "info@justinc.me"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+          "findMyIsp\\": "src"
+        }
+    }
+}
