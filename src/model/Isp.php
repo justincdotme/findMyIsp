@@ -40,103 +40,31 @@ use findMyIsp\lib\Model;
 
 class Isp extends Model {
 
-    protected $_location;
-
-    public function __construct($location)
+    public function __construct($params)
     {
-        $this->_location = $location;
+        foreach($params as $key => $value)
+        {
+            $this->$key = $value;
+        }
     }
 
     /**
-     * Repackage the Full ISP list.
-     * Return only required attributes for each location.
+     * Get the ispList attribute.
      *
      * @return array
      */
     public function getIspList()
     {
-        $bigList = $this->getFullIspList();
-        $shortList = [];
-        foreach($bigList as $isp)
-        {
-            $isp = [
-                'name' => isset($isp->name) ? $isp->name : null,
-                'website' => isset($isp->website) ? $isp->website : null,
-                'phone' => isset($isp->formatted_phone_number) ? $isp->formatted_phone_number : null,
-                'html_address' => isset($isp->adr_address) ? str_replace(',', '<br />', $isp->adr_address) : null
-            ];
-            array_push($shortList, json_decode(json_encode($isp)));
-        }
-        return $shortList;
+        return isset($this->ispList) ? $this->ispList : null;
     }
 
     /**
-     * Return a JSON encoded list of nearby ISP's.
+     * Return the ispList attribute (array) as an stdClass object.
      *
      * @return string
      */
     public function getIspJsonList()
     {
-        return json_encode($this->getIspList());
-    }
-
-    /**
-     * Get the details for each of the top nearby ISPs.
-     * This method uses the Google Places API Web Service.
-     * [https://developers.google.com/places/webservice/details]
-     *
-     * @return array
-     */
-    protected function getFullIspList()
-    {
-        $apiKey = PLACES_API_KEY;
-        $placeIds = $this->getPlaceIds();
-        $ispList = [];
-        foreach($placeIds as $placeId)
-        {
-            $referenceUrl = "https://maps.googleapis.com/maps/api/place/details/json?placeid=$placeId&key=$apiKey";
-            $results = $this->doCurl($referenceUrl);
-            array_push($ispList, $results->result);
-        }
-        return $ispList;
-    }
-
-    /**
-     * Get a list of ISP's in the user's geographic area.
-     * This uses the Google Places API Web Service's Nearby Search feature.
-     * [https://developers.google.com/places/webservice/search#PlaceSearchRequests]
-     *
-     * @return bool
-     */
-    protected function _getNearbyIspList()
-    {
-        $apiKey = PLACES_API_KEY;
-        $keyWords = 'internet+service+provider';
-        $radius = '50000';
-        $placesUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=$this->_location&radius=$radius&keyword=$keyWords&rankby=prominence&key=$apiKey";
-        $ispList = $this->doCurl($placesUrl);
-        return $ispList->results;
-    }
-
-    /**
-     * Get the "Place ID" for each location.
-     * Limit the number of references to ISP_LIST_COUNT.
-     * [https://developers.google.com/places/webservice/details]
-     *
-     * @return array
-     */
-    public function getPlaceIds()
-    {
-        $i = 0;
-        $references = [];
-        foreach($this->_getNearbyIspList() as $result)
-        {
-            array_push($references, $result->place_id);
-            if(++$i == ISP_LIST_COUNT)
-            {
-                break;
-            }
-        }
-        return $references;
+        return isset($this->ispList) ? json_encode($this->ispList) : null;
     }
 }

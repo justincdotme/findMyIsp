@@ -39,39 +39,45 @@ use findMyIsp\lib\Model;
 
 class Client extends Model {
 
-    public function __construct()
+    public function __construct($params)
     {
-        $this->getIpInfo();
+        if($params)
+        {
+            foreach($params as $key => $value)
+            {
+                $this->$key = $value;
+            }
+        }
     }
 
     /**
-     * Get the ISP attribute from the ipInfo session object.
+     * Get the ISP attribute.
      *
      * @return mixed|string
      */
     public function getIsp()
     {
-        return isset($_SESSION['ipInfo']->org) ? preg_replace('/(^[^\s]*)(\s)/', '', $_SESSION['ipInfo']->org) : 'Not Found';
+        return isset($this->org) ? $this->org : null;
     }
 
     /**
-     * Get the location attribute from the ipInfo session object.
+     * Get the location attribute.
      *
-     * @return null
+     * @return mixed|string
      */
     public function getLocation()
     {
-        return isset($_SESSION['ipInfo']->loc) ? $_SESSION['ipInfo']->loc : null;
+        return isset($this->loc) ? $this->loc : null;
     }
 
     /**
-     * Set the location attribute on the ipInfo session object.
+     * Set the location attribute.
      *
      * @param $location
      */
     public function setLocation($location)
     {
-       return $_SESSION['ipInfo']->loc = $location;
+       return $this->loc = $location;
     }
 
     /**
@@ -81,20 +87,6 @@ class Client extends Model {
      */
     public function getIp()
     {
-        return isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : 'Unknown';
-    }
-
-    /**
-     * Get the user's Geolocation info.
-     * Uses the ipinfo.io API [http://ipinfo.io]
-     * This method gets the initial ISP information for the user.
-     * This method also serves as a fallback for browsers lacking HTML5 Geolocation support.
-     *
-     * @return bool
-     */
-    public function getIpInfo()
-    {
-        $url = "http://ipinfo.io/" . $this->getIp() . "/json";
-        return $_SESSION['ipInfo'] = $this->doCurl($url);
+        return isset($this->ip) ? $this->ip : 'Unknown';
     }
 }
