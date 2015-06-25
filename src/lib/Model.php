@@ -36,26 +36,5 @@
 
 abstract class Model {
 
-    /**
-     * Send cURL request to endpoint.
-     * Return the response as PHP object.
-     *
-     * @param $url
-     * @return bool|mixed
-     */
-    protected function doCurl($url)
-    {
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        $output = curl_exec($ch);
-        curl_close($ch);
-        if($output === false)
-        {
-            return false;
-        }
-        $output = json_decode($output);
-        return $output;
-    }
+
 }
