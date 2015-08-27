@@ -2,7 +2,7 @@
     "name": "justincdotme/findmyisp",
     "description": "ISP detection tool",
     "require": {
-
+	"guzzlehttp/guzzle": "~6.0"
     },
     "require-dev": {
         "raveren/kint": "0.9.*"
