@@ -1,34 +1,16 @@
-<?php namespace findMyIsp;
+<?php namespace nearMe;
 
-use findMyIsp\controller\PageController;
-use findMyIsp\lib\Request;
+use nearMe\controller\PageController;
+use nearMe\lib\Request;
 
-$request = new Request;
+//TODO - Implement a much more robust routing solution
+if (in_array($_SERVER['REQUEST_URI'], ['/', '/index.php'])) {
+    $controller = new PageController();
+    $request = new Request();
+    if ($request->isGet()) {
+        //GET something
 
-/**
- * The homepage has 2 possible URIs: / and /index.php
- */
-$homePage = ($_SERVER['REQUEST_URI'] === '/' || $_SERVER['REQUEST_URI'] === '/index.php') ? true : false;
-
-/**
- * GET the homepage
- */
-if($request->isGet())
-{
-    if($homePage)
-    {
-        $controller = new PageController();
-        $controller->index();
-    }
-}
-/**
- * Post to the homepage.
- */
-if($request->isPost())
-{
-    if($homePage)
-    {
-        $controller = new PageController();
-        $controller->show();
+    } else if ($request->isPost()) {
+        //POST something
     }
 }

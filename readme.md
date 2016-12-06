@@ -1,10 +1,10 @@
-# FindMyISP v2.0
- An application for determining a user's current ISP and displaying other ISPs in their area.
- The application uses either the HTML5 Geolocation API or the less accurate IpInfo API to determine the users location. 
- After the location is determined, the application will display a list of ISPs in the user's geographic area using the Google Maps and Google Places APIs.
+# nearMe v2.0
+ An application for finding nearby [location type].
+ The application uses the HTML5 Geolocation API or the IpInfo API to determine the users location. 
+ After the location is determined, the application will display a list of [location type] in the user's geographic area using the Google Maps and Google Places APIs.
 
  **View Demo**
- [http://findmyisp.demos.justinc.me](http://findmyisp.demos.justinc.me/)
+ [http://nearMe.demos.justinc.me](http://nearMe.demos.justinc.me/) -- Not active yet
 
 
 ## Requirements

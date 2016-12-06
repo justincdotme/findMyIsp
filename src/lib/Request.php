@@ -1,4 +1,4 @@
-<?php namespace findMyIsp\lib;
+<?php namespace nearMe\lib;
 
 /**
  * Class Request
@@ -26,28 +26,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  *
- * @package findMyIsp
+ * @package nearMe
  * @author Justin Christenson <info@justinc.me>
  * @version 1.0.0
  * @license http://opensource.org/licenses/mit-license.php
- * @link http://findmyisp.demos.justinc.me
+ * @link http://nearMe.demos.justinc.me
  *
  */
 
 class Request {
 
     /**
-     * Determine if the request was sent via the XMLHttpRequest (JavaScript) object.
+     * Determine if the request was sent via the XMLHttpRequest object.
      *
      * @return bool
      */
     public function isAjax()
     {
-        if(isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest')
-        {
-            return true;
-        }
-        return false;
+        return (
+            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
+            'xmlhttprequest' === strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])
+        );
     }
 
     /**
@@ -57,7 +56,7 @@ class Request {
      */
     public function isPost()
     {
-        return $_SERVER['REQUEST_METHOD'] === 'POST' ? true : false;
+        return ('POST' === $_SERVER['REQUEST_METHOD']);
     }
 
     /**
@@ -67,6 +66,6 @@ class Request {
      */
     public function isGet()
     {
-        return $_SERVER['REQUEST_METHOD'] === 'GET' ? true : false;
+        return ('GET' === $_SERVER['REQUEST_METHOD']);
     }
 }

@@ -1,8 +1,7 @@
 <?php
 
-//The session is used to persist location and ISP data.
 //Name the session.
-session_name('findMyIspSession');
+session_name('nearMeSession');
 //Start the session.
 session_start();
 

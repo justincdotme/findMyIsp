@@ -1,7 +1,6 @@
-<?php  namespace findMyIsp\config;
+<?php  namespace nearMe\config;
 
-//Set the Google Places Web Services API key.
-define('PLACES_API_KEY','YOUR_API_KEY_HERE');
+class Config {
 
-//Set the default ISP search result count.
-define('ISP_LIST_COUNT', 12);
+    //Read from config.ini via parse_ini_file()
+}
