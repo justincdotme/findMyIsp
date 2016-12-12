@@ -1,11 +1,10 @@
-<?php namespace nearMe\lib;
+<?php namespace nearMe\Lib;
 
 /**
- * Class View
+ * Abstract Class Model
  *
- * The View class generates views.
+ * Provides helper methods used by the application models.
  *
- * This class contains 1 method, make(), which generates a view.
  *
  * PHP Version 5.6
  *
@@ -35,17 +34,7 @@
  *
  */
 
-class View {
+abstract class Model {
 
-    /**
-     * Generate a view using PHPs include function.
-     *
-     * @param $view -  Filename of view, minus path and extension.
-     * @param null $data - Data to be sent to view.
-     */
-    public function make($view, $data = null)
-    {
-        $file = '../src/views/' . $view . '.php';
-        include($file);
-    }
+
 }

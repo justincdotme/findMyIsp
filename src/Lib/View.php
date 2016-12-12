@@ -1,10 +1,11 @@
-<?php namespace nearMe\lib;
+<?php namespace nearMe\Lib;
 
 /**
- * Abstract Class Controller
+ * Class View
  *
- * Provides helper methods used by the application controllers.
+ * The View class generates views.
  *
+ * Exposes helper methods for views.
  *
  * PHP Version 5.6
  *
@@ -34,17 +35,18 @@
  *
  */
 
-abstract class Controller {
+class View {
 
     /**
-     * Set the header to application/json.
-     * Echo the $output string as raw JSON.
+     * Include a view with optional data
      *
-     * @param $output
+     * @param $view -  Filename of view, minus path and extension.
+     * @param null $data - Data to be sent to view.
      */
-    public function jsonOut($output)
+    public function make($view, $data = null)
     {
-        header('Content-Type: application/json');
-        echo $output;
+        //TODO - Add check for file and filetype here
+        $file = '../src/views/' . $view . '.php';
+        include($file);
     }
 }

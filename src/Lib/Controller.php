@@ -1,9 +1,9 @@
-<?php namespace nearMe\lib;
+<?php namespace nearMe\Lib;
 
 /**
- * Class Request
+ * Abstract Class Controller
  *
- * Provides helper methods for HTTP requests.
+ * Provides helper methods used by the application controllers.
  *
  *
  * PHP Version 5.6
@@ -34,38 +34,17 @@
  *
  */
 
-class Request {
+abstract class Controller {
 
     /**
-     * Determine if the request was sent via the XMLHttpRequest object.
+     * Set the header to application/json.
+     * Echo the $output string as raw JSON.
      *
-     * @return bool
+     * @param $output
      */
-    public function isAjax()
+    public function jsonOut($output)
     {
-        return (
-            isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
-            'xmlhttprequest' === strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])
-        );
-    }
-
-    /**
-     * Check if the request was submitted via POST.
-     *
-     * @return bool
-     */
-    public function isPost()
-    {
-        return ('POST' === $_SERVER['REQUEST_METHOD']);
-    }
-
-    /**
-     * Check if the request was submitted via GET.
-     *
-     * @return bool
-     */
-    public function isGet()
-    {
-        return ('GET' === $_SERVER['REQUEST_METHOD']);
+        header('Content-Type: application/json');
+        echo json_encode($output);
     }
 }

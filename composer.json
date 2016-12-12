@@ -1,6 +1,6 @@
 {
-    "name": "justincdotme/findmyisp",
-    "description": "ISP detection tool",
+    "name": "justincdotme/nearMe",
+    "description": "EV Charging Station Locator",
     "require": {
         "php": ">=5.5.9",
 	    "guzzlehttp/guzzle": "~6.0",
@@ -17,7 +17,7 @@
     ],
     "autoload": {
         "psr-4": {
-          "findMyIsp\\": "src"
+          "nearMe\\": "src"
         }
     }
 }

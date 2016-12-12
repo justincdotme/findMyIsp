@@ -1,6 +1,6 @@
 <?php namespace nearMe\controller;
 
-use nearMe\lib\Controller;
+use nearMe\Lib\Controller;
 
 class PageController extends Controller
 {

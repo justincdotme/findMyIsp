@@ -1,9 +1,9 @@
-<?php namespace nearMe\lib;
+<?php namespace nearMe\Lib;
 
 /**
- * Abstract Class Model
+ * Class Response
  *
- * Provides helper methods used by the application models.
+ * Expose helper methods for HTTP responses.
  *
  *
  * PHP Version 5.6
@@ -34,7 +34,17 @@
  *
  */
 
-abstract class Model {
+class Response {
 
-
+    /**
+     * Set the header to application/json.
+     * Echo the $output string as raw JSON.
+     *
+     * @param $output
+     */
+    public function jsonOut($output)
+    {
+        header('Content-Type: application/json');
+        echo json_encode($output);
+    }
 }
