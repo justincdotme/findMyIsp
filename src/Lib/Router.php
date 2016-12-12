@@ -2,7 +2,14 @@
 
 use nearMe\controller\PageController;
 
+/**
+ * Class Router
+ * @package nearMe\Lib
+ */
 class Router {
+    /**
+     *
+     */
     public function route()
     {
         //TODO - Implement a much more robust routing solution

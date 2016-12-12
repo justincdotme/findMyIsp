@@ -41,9 +41,9 @@ class HttpPersistence implements SessionInterface
     }
 
     /**
-     * @param $value
+     * @param $key
      */
-    public function get($value)
+    public function get($key)
     {
         //TODO - Implement
     }

@@ -32,10 +32,10 @@ interface SessionInterface
     public function delete($value);
 
     /**
-     * @param $value
+     * @param $key
      * @return mixed
      */
-    public function get($value);
+    public function get($key);
 
     /**
      * @return mixed
