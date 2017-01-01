@@ -1,0 +1,16 @@
+h1 a {
+  color: #fff;
+}
+h1 a:hover {
+  color: #ddd;
+}
+p {
+  font-size: 1.4em;
+}
+div.isp-info {
+  height: 440px;
+  margin-bottom: 30px;
+  .panel-body {
+    height: 350px;
+  }
+}

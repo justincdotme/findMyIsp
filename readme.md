@@ -1,10 +1,10 @@
-# nearMe v1.0
- An application for finding nearby EV Charging Stations.
- The application uses the HTML5 Geolocation API or the IpInfo API to determine the users location. 
- After the location is determined, the application will display a list of [location type] in the user's geographic area using the Google Maps and Google Places APIs.
+# FindMyISP
+ An application for determining a user's current ISP and displaying other ISPs in their area.
+ The application uses either the HTML5 Geolocation API or the less accurate IpInfo API to determine the users location. 
+ After the location is determined, the application will display a list of ISPs in the user's geographic area using the Google Maps and Google Places APIs.
 
  **View Demo**
- [http://nearMe.demos.justinc.me](http://nearMe.demos.justinc.me/) -- Not active yet
+ [http://findmyisp.demos.justinc.me](http://findmyisp.demos.justinc.me)
 
 
 ## Requirements
@@ -15,7 +15,7 @@
 
  Clone the repository, then install dependencies using Composer.
  
-    git clone https://github.com/justincdotme/nearMe.git
+    git clone https://github.com/justincdotme/findmyisp.git
 
     composer install
     
@@ -23,13 +23,13 @@
 
 ## Credits
 
- -  [Google Maps](https://developers.google.com/maps/).
+ - The IP Info API Dev Team for an excellent and free [IP lookup API](http://ipinfo.io/).
 
 ## License
 
  The MIT License (MIT)
  
- Copyright (c) 2016 Justin Christenson
+ Copyright (c) 2015 Justin Christenson
  
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal

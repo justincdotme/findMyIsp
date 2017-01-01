@@ -1,4 +1,4 @@
-<?php namespace nearMe\controller;
+<?php namespace findMyIsp\controller;
 
 use findMyIsp\lib\ClientModelFactory;
 use findMyIsp\lib\Curl;
@@ -10,22 +10,21 @@ use findMyIsp\model\Isp;
 use findMyIsp\lib\View;
 use findMyIsp\lib\Controller;
 
-
-class PageController extends Controller
-{
-
+class PageController extends Controller {
 
     protected $_view;
     protected $_client;
     protected $_isp;
     protected $_request;
+    protected $_curl;
 
     public function __construct()
     {
         $this->_view = new View;
-        $this->_client = new Client;
+        $this->_curl = new Curl;
+        $this->_client = (new ClientModelFactory($this->_curl))->make();
         $this->_request = new Request;
-        $this->_isp = new Isp($this->_client->getLocation());
+        $this->_isp = (new IspModelFactory($this->_curl, $this->_client->getLocation()))->make();
     }
 
     /**
@@ -59,7 +58,7 @@ class PageController extends Controller
                 $location = filter_input(INPUT_POST, 'location' ,FILTER_SANITIZE_STRING);
                 if(!is_null($location))
                 {
-                    $this->_isp = new Isp($location);
+                    $this->_isp = (new IspModelFactory($this->_curl, $location))->make();
                 }
                 $list = $this->_isp->getIspJsonList();
                 return $this->jsonOut($list);
