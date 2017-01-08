@@ -30,7 +30,7 @@
  * @author Justin Christenson <info@justinc.me>
  * @version 1.0.0
  * @license http://opensource.org/licenses/mit-license.php
- * @link http://findmyisp.demos.justinc.me
+ * @link http://findmyisp.justinc.me
  *
  */
 
