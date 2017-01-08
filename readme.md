@@ -4,7 +4,7 @@
  After the location is determined, the application will display a list of ISPs in the user's geographic area using the Google Maps and Google Places APIs.
 
  **View Demo**
- [http://findmyisp.justinc.me](http://findmyisp.justinc.me)
+ [https://findmyisp.justinc.me](https://findmyisp.justinc.me)
 
 
 ## Requirements
