@@ -57,7 +57,7 @@ class Request {
      */
     public function isPost()
     {
-        return $_SERVER['REQUEST_METHOD'] === 'POST' ? true : false;
+        return $_SERVER['REQUEST_METHOD'] === 'POST';
     }
 
     /**
@@ -67,6 +67,37 @@ class Request {
      */
     public function isGet()
     {
-        return $_SERVER['REQUEST_METHOD'] === 'GET' ? true : false;
+        return $_SERVER['REQUEST_METHOD'] === 'GET';
+    }
+
+    /**
+     * Attempt to get the real IP address of the client.
+     *
+     * @return mixed
+     */
+    public function getClientIp()
+    {
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) { //Cloudflare
+            $clientIp = $this->sanitizeIp($_SERVER["HTTP_CF_CONNECTING_IP"]);
+        } else if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+            $clientIp = $this->sanitizeIp($_SERVER["HTTP_CLIENT_IP"]);
+        } else if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $clientIp = $this->sanitizeIp($_SERVER["HTTP_X_FORWARDED_FOR"]);
+        } else {
+            $clientIp = $this->sanitizeIp($_SERVER['REMOTE_ADDR']);
+        }
+
+        return (!$clientIp) ? null : $clientIp;
+    }
+
+    /**
+     * Sanitize and validate the IP address.
+     *
+     * @param $ipAddress
+     * @return mixed
+     */
+    protected function sanitizeIp($ipAddress)
+    {
+        return filter_var($ipAddress, FILTER_VALIDATE_IP);
     }
 }
