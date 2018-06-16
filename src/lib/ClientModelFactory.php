@@ -5,12 +5,12 @@ use findMyIsp\model\Client;
 class ClientModelFactory {
 
     protected $_curl;
-    protected $_clientIp;
+    protected $_request;
 
-    public function __construct(DataAccessInterface $curl)
+    public function __construct(DataAccessInterface $curl, Request $request)
     {
         $this->_curl = $curl;
-        $this->_clientIp = $_SERVER['REMOTE_ADDR'];
+        $this->_request = $request;
     }
 
     /**
@@ -21,13 +21,11 @@ class ClientModelFactory {
     public function make()
     {
         $curlParams = [
-            CURLOPT_URL => "http://ipinfo.io/" . $this->_clientIp . "/json",
+            CURLOPT_URL => "http://ipinfo.io/" . $this->_request->getClientIp() . "/json",
             CURLOPT_RETURNTRANSFER => 1,
             CURLOPT_HEADER => 0
         ];
 
-        $data = $this->_curl->getData($curlParams);
-
-        return new Client($data);
+        return new Client($this->_curl->getData($curlParams));
     }
 }
